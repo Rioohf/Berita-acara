@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Sep 2024 pada 09.04
+-- Waktu pembuatan: 09 Sep 2024 pada 09.43
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -42,7 +42,8 @@ INSERT INTO `levels` (`id`, `level_name`, `created_at`, `updated_at`) VALUES
 (1, 'Administrator', '2024-09-07 01:42:52', '2024-09-07 01:42:52'),
 (2, 'Admin', '2024-09-07 01:42:52', '2024-09-07 01:42:52'),
 (3, 'Pic', '2024-09-07 01:42:52', '2024-09-07 01:42:52'),
-(4, 'Instruktur', '2024-09-07 01:42:52', '2024-09-07 01:42:52');
+(4, 'Instruktur', '2024-09-07 01:42:52', '2024-09-07 01:42:52'),
+(8, 'Instruktur 1', '2024-09-09 02:34:46', '2024-09-09 03:03:27');
 
 -- --------------------------------------------------------
 
@@ -87,7 +88,9 @@ CREATE TABLE `user_levels` (
 
 INSERT INTO `user_levels` (`id`, `user_id`, `level_id`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, '2024-09-07 02:04:58', '2024-09-07 02:04:58'),
-(2, 2, 4, '2024-09-07 02:04:58', '2024-09-07 02:04:58');
+(2, 2, 4, '2024-09-07 02:04:58', '2024-09-07 02:04:58'),
+(3, 1, 2, '2024-09-09 06:43:56', '2024-09-09 06:43:56'),
+(4, 2, 2, '2024-09-09 07:34:08', '2024-09-09 07:34:08');
 
 --
 -- Indexes for dumped tables
@@ -119,19 +122,19 @@ ALTER TABLE `user_levels`
 -- AUTO_INCREMENT untuk tabel `levels`
 --
 ALTER TABLE `levels`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_levels`
 --
 ALTER TABLE `user_levels`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

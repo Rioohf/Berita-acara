@@ -6,7 +6,7 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $password = sha1($_POST['password']);
 
-    $user = mysqli_query($koneksi, "SELECT * FROM users WHERE email = '$email'");
+    $user = mysqli_query($koneksi, "SELECT * FROM users WHERE email ='$email'");
     if (mysqli_num_rows($user) > 0) {
         $user = mysqli_fetch_assoc($user);
         if ($user['password'] == $password) {
@@ -15,10 +15,11 @@ if (isset($_POST['submit'])) {
             header("location:index.php");
         }
     } else {
-        // Jika tidak ada data user berdasarkan email
+        // jika tidak data user berdasarkan email
         header("location:login.php?error=login-gagal");
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +27,13 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Berita Acara | Log in</title>
+    <title>Admin Berita Acara</title>
+
+    <style>
+        body{
+            background-color: #bdc3c7 !important;
+        }
+    </style>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -36,19 +43,20 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
+
 </head>
 
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="#"><b>Login</b><br>Berita Acara</a>
+            <a href="#"><b>Admin</b>Berita Acara</a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <?php if (isset($_GET['error'])) {?>
-                <div class="alert alert-danger" style="text-align:center"><b>Login Gagal</b> <br> Mohon periksa kembali email dan password anda!</div>
-                <?php } ?>
+                <!-- <?php if (isset($_GET['error'])) { ?>
+                    <div class="alert alert-warning">Mohon periksa kembali email dan password anda!!</div>
+                <?php } ?> -->
                 <p class="login-box-msg">Sign in to start your session</p>
 
                 <form action="#" method="post">
@@ -79,14 +87,11 @@ if (isset($_POST['submit'])) {
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" name="submit" class="btn btn-primary btn-block">Login</button>
+                            <button type="submit" name="submit" class="btn btn-primary btn-block">Sign In</button>
                         </div>
                         <!-- /.col -->
                     </div>
                 </form>
-
-                <!-- /.social-auth-links -->
-
             </div>
             <!-- /.login-card-body -->
         </div>
@@ -99,6 +104,17 @@ if (isset($_POST['submit'])) {
     <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="assets/dist/js/adminlte.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        <?php if (isset($_GET['error'])) { ?>
+            Swal.fire({
+                title: 'Error!',
+                text: 'Mohon periksa kembali email dan password anda',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
+        <?php } ?>
+    </script>
 </body>
 
 </html>

@@ -1,8 +1,8 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(189,195,199,1) 100%);">
   <!-- Brand Logo -->
   <a href="assets/index3.html" class="brand-link">
-    <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-    <span class="brand-text font-weight-light">AdminLTE 3</span>
+    <img src="assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <span class="brand-text font-weight-light"><?php echo $_SESSION['fullname'] ?></span>
   </a>
 
   <!-- Sidebar -->
@@ -64,13 +64,13 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="?pg=level" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Level</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="?pg=user" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Pengguna</p>
               </a>
@@ -89,7 +89,7 @@
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Berita Aca</p>
+                <p>Berita Acara</p>
               </a>
             </li>
             <li class="nav-item">

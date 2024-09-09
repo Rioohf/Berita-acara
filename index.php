@@ -1,6 +1,10 @@
 <?php
 session_start();
+ob_start();
 include 'koneksi.php';
+include 'helpers/title.php';
+$title = getTitle($_GET['pg'] ?? 'Dashboard');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,18 +33,18 @@ include 'koneksi.php';
         <?php include 'inc/sidebar.php'; ?>
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper" style="background-color: #d9e2e8 !important;">
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Blank Page</h1>
+                            <h1><b><?php echo $title ?></b></h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Blank Page</li>
+                                <li class="breadcrumb-item active"><?php echo $title ?></li>
                             </ol>
                         </div>
                     </div>
@@ -53,7 +57,7 @@ include 'koneksi.php';
                 <!-- Default box -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Title</h3>
+                        <h3 class="card-title"><?php echo $title ?></h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -66,20 +70,20 @@ include 'koneksi.php';
                     </div>
                     <div class="card-body">
                         <?php
-                            if (isset($_GET['pg'])) {
-                                if (file_exists('content/' . $_GET['pg'] . '.php')) {
-                                    include 'content/' . $_GET['pg'] . '.php';
-                                } else {
-                                    echo 'not found';
-                                }
+                        if (isset($_GET['pg'])) {
+                            if (file_exists('content/' . $_GET['pg'] . '.php')) {
+                                include 'content/' . $_GET['pg'] . '.php';
                             } else {
-                                include 'content/home.php';
+                                echo "not found";
                             }
+                        } else {
+                            include 'content/home.php';
+                        }
                         ?>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        Footer
+                        Sistem Informasi Berita Acara
                     </div>
                     <!-- /.card-footer-->
                 </div>
@@ -92,9 +96,9 @@ include 'koneksi.php';
 
         <footer class="main-footer">
             <div class="float-right d-none d-sm-block">
-                <b>Version</b> 3.2.0
+                <b>Version</b> 1.0.0
             </div>
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2024.</strong> Berita Acara PPKD.
         </footer>
 
         <!-- Control Sidebar -->
@@ -113,6 +117,8 @@ include 'koneksi.php';
     <script src="assets/dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="assets/dist/js/demo.js"></script>
+
+
 </body>
 
 </html>
