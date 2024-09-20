@@ -7,26 +7,30 @@ if (isset($_POST['simpan'])) {
     header("location:?pg=user-role&id_user=" . urlencode($user_id) . "&tambah=berhasil");
 }
 
-if (isset($_GET['delete'])) {
-    $id = $_GET['delete']; // 1, 2, 3 , 4
-
-    $delete = mysqli_query($koneksi, "DELETE FROM users WHERE id='$id' ");
-    header("location:?pg=user&hapus=berhasil");
-}
-
 if (isset($_GET['edit'])) {
     $id = $_GET['edit'];
-    $edit = mysqli_query($koneksi, "SELECT * FROM users WHERE id='$id' ");
+    $edit = mysqli_query($koneksi, "SELECT * FROM user_levels WHERE id='$id' ");
     $rowEdit = mysqli_fetch_assoc($edit);
 }
 
+if (isset($_GET['delete'])) {
+    $id = $_GET['delete']; // 1, 2, 3 , 4
+    
+    $edit = mysqli_query($koneksi, "SELECT * FROM user_levels WHERE id='$id' ");
+    $rowEdit = mysqli_fetch_assoc($edit);
+    
+    $user_id = $rowEdit['user_id'];
+
+    $delete = mysqli_query($koneksi, "DELETE FROM user_levels WHERE id='$id' ");
+    header("location:?pg=user-role&id_user=" . $user_id . "&hapus=berhasil");
+}
+
 if (isset($_POST['edit'])) {
-    $fullname = $_POST['fullname'];
-    $email = $_POST['email'];
-    $password = sha1($_POST['password']);
+    $user_id = $rowEdit['user_id'];
+    $level_id = $_POST['level_id'];
     $id = $_GET['edit'];
-    $update = mysqli_query($koneksi, "UPDATE users SET fullname='$fullname', email='$email', password='$password' WHERE id='$id'");
-    header("location:?pg=user&ubah=berhasil");
+    $update = mysqli_query($koneksi, "UPDATE user_levels SET level_id='$level_id' WHERE id='$id'");
+    header("location:?pg=user-role&id_user=" . $user_id . "&ubah=berhasil");
 }
 
 $queryLevels = mysqli_query($koneksi, "SELECT * FROM levels ORDER BY id DESC");
@@ -42,9 +46,9 @@ $queryLevels = mysqli_query($koneksi, "SELECT * FROM levels ORDER BY id DESC");
         <div class="col-sm-6">
             <select name="level_id" class="form-control" id="">
                 <option value="">Pilih Level</option>
-                <?php while($rowLevel = mysqli_fetch_assoc($queryLevels)): ?>
-                <option value="<?php echo $rowLevel['id'] ?>"><?php echo $rowLevel['level_name']?></option>
-                <?php endwhile?>
+                <?php while ($rowLevel = mysqli_fetch_assoc($queryLevels)): ?>
+                    <option <?php echo isset($rowEdit) ? ($rowEdit['level_id'] == $rowLevel['id']) ? 'selected' : '' : '' ?> value="<?php echo $rowLevel['id'] ?>"><?php echo $rowLevel['level_name'] ?></option>
+                <?php endwhile ?>
             </select>
         </div>
     </div>
